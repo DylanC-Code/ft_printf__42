@@ -1,8 +1,10 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD
+CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I libft
 
 AR = ar
 ARFLAGS = rcs
+
+MAKE = make
 
 RM = rm -f
 
@@ -11,40 +13,48 @@ NAME = libftprintf.a
 BUILD_DIR = build/
 
 SRCS_DIR = srcs/
-# SRCS = (addprefix $(SRCS_DIR), ft_printf.c)
-SRCS  = ft_printf.c \
+SRCS  = ft_printf.c
 
 OBJS = $(addprefix $(BUILD_DIR), $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "Creating $@ archive"
+$(NAME): $(BUILD_DIR) $(BUILD_DIR)libft.a $(OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@echo
+	@echo "[$(NAME)] Archive generated ✅"
 
-$(BUILD_DIR)%.o: $(BUILD_DIR) $(SRCS_DIR)%.c
-	$(CC) $(CFLAGS) -c $< -o $@
-	@echo "Compiling $<"
+$(BUILD_DIR)%.o: $(SRCS_DIR)%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@echo "[$(NAME)] Compiling $<"
+
+$(BUILD_DIR)libft.a:
+	$(MAKE) rebonus -C libft
 
 $(BUILD_DIR):
-	mkdir -p $(BUILD_DIR)
-	@echo "Creating build directory"
+	@echo "\n"
+	@mkdir -p $(BUILD_DIR)
+	@echo "[$(NAME)] Creating build directory"
 
-bonus: $(OBJS)
-	$(AR) $(ARFLAGS) $(NAME) $(OBJS)
-	@echo "Creating $@ bonus archive"
+bonus: all
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
+	@echo "[$(NAME)] Bonus successfully added to the archive 🎆"
 
 clean:
-	$(RM) $(OBJS) $(DEPS)
-	@echo "Cleaning object files"
+	@$(RM) $(OBJS) $(DEPS)
+	@$(MAKE) clean -C libft
+	@echo "[$(NAME)] Cleaning object files 🧼"
 
 fclean: clean
-	$(RM) $(NAME)
-	@echo "Cleaning archive"
+	@$(RM) $(NAME) $(BUILD_DIR)libft.a
+	@$(MAKE) fclean -C libft
+	@echo "[$(NAME)] Cleaning archive 🧼"
 
 re: fclean all
-	@echo "Rebuilding all"
+	@echo "[$(NAME)] Rebuilding all"
+
+rebonus: fclean bonus
 
 test:
 	~/francinette/tester.sh -m && ~/francinette/tester.sh -ms
