@@ -17,7 +17,11 @@ BUILD_DIR = build/
 SRCS_DIR = srcs/
 SRCS  = \
 	ft_printf.c \
- 	ft_text_raw.c \
+ 	text_raw.c \
+ 	format.c \
+ 	format_validator.c \
+ 	printers.c \
+ 	parsers.c \
 
 OBJS = $(addprefix $(BUILD_DIR), $(SRCS:.c=.o))
 DEPS = $(OBJS:.o=.d)

@@ -1,49 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:08:35 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/03 15:09:54 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* =============== Importation =============== */
 
 #include "ft_printf.h"
-#include <stdarg.h>
 
 /* =============== Declaration =============== */
 
-int				ft_printf(const char *str, ...);
+t_format	*create_format(void);
+t_status	parse_percent(t_format *format, char c);
 
 /* =============== Definition =============== */
 
-
-
-int	ft_printf(const char *str, ...)
+t_format	*create_format(void)
 {
-	t_list	*list;
-	int		written_bytes;
+	t_format	*format;
 
-	if (!str)
-		return (ERROR);
-	list = NULL;
-	parse_str((char *)str, &list);
-	if (!list)
-		return (0);
-	written_bytes = print_contents(list);
-	return (written_bytes);
+	format = malloc(sizeof(t_format));
+	if (!format)
+		return (NULL);
+	format->len = 1;
+	format->type = 0;
+	return (format);
 }
 
-
-
-int	main(void)
+t_status	parse_percent(t_format *format, char c)
 {
-	// ft_printf("Salut %d les gens %+i ", 66, 77, 9, 12333);
-	ft_printf("Salut les gens ", 66, 77, 9, 12333);
-	return (0);
+	if (c != '%')
+		return (NOOP);
+	format->len++;
+	format->type = '%';
+	return (SUCCESS);
 }
-

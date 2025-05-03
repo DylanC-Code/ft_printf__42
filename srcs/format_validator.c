@@ -1,49 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   format_validator.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:08:35 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/03 15:08:36 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/03 15:09:14 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* =============== Importation =============== */
 
 #include "ft_printf.h"
-#include <stdarg.h>
 
 /* =============== Declaration =============== */
 
-int				ft_printf(const char *str, ...);
+bool	is_valid_type(char c);
+bool	is_valid_format(char *format);
 
 /* =============== Definition =============== */
 
-
-
-int	ft_printf(const char *str, ...)
+bool	is_valid_type(char c)
 {
-	t_list	*list;
-	int		written_bytes;
+	size_t	i;
 
-	if (!str)
-		return (ERROR);
-	list = NULL;
-	parse_str((char *)str, &list);
-	if (!list)
-		return (0);
-	written_bytes = print_contents(list);
-	return (written_bytes);
+	i = -1;
+	while (TYPES[++i])
+		if (TYPES[i] == c)
+			return (true);
+	return (false);
 }
 
-
-
-int	main(void)
+bool	is_valid_format(char *format)
 {
-	// ft_printf("Salut %d les gens %+i ", 66, 77, 9, 12333);
-	ft_printf("Salut les gens ", 66, 77, 9, 12333);
-	return (0);
+	if (*format++ != FORMAT_START)
+		return (false);
+	if (*format == FORMAT_START)
+		return (true);
+	// is_valid_flags(&format);
+	if (!is_valid_type(*format))
+		return (false);
+	return (true);
 }
-
