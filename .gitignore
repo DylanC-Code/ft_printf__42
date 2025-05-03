@@ -1,3 +1,4 @@
 build
 libftprintf.a
 libft
+*.out
