@@ -6,7 +6,7 @@ ARFLAGS = rcs
 
 MAKE = make
 
-RM = rm -f
+RM = rm -rf
 
 NAME = libftprintf.a
 LIB = libft.a
@@ -14,16 +14,19 @@ LIB_DIR = libft/
 
 BUILD_DIR = build/
 
-SRCS_DIR = srcs/
-SRCS  = \
+SRC_DIR = srcs/
+SRCS  = $(addprefix $(SRC_DIR), \
 	ft_printf.c \
- 	text_raw.c \
- 	format.c \
- 	format_validator.c \
- 	printers.c \
- 	parsers.c \
+	text_raw.c \
+	format.c \
+	format_validator.c \
+	parsers.c \
+	printers/printers.c \
+	printers/int_printers.c \
+	printers/utils_printers.c \
+)
 
-OBJS = $(addprefix $(BUILD_DIR), $(SRCS:.c=.o))
+OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
@@ -33,7 +36,8 @@ $(NAME): $(BUILD_DIR) $(BUILD_DIR)$(LIB) $(OBJS)
 	@echo
 	@echo "[$(NAME)] Archive generated ✅"
 
-$(BUILD_DIR)%.o: $(SRCS_DIR)%.c
+$(BUILD_DIR)%.o: %.c
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "[$(NAME)] Compiling $<"
 
@@ -60,8 +64,7 @@ clean:
 	@echo "[$(NAME)] Cleaning object files 🧼"
 
 fclean: clean
-	@$(RM) $(NAME) $(BUILD_DIR)$(LIB)
-	@$(MAKE) fclean -C libft
+	@$(RM) $(BUILD_DIR)
 	@echo "[$(NAME)] Cleaning archive 🧼"
 
 re: fclean all
