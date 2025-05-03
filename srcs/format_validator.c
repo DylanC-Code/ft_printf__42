@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:08:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:09:14 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 19:32:06 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 bool	is_valid_type(char c);
 bool	is_valid_format(char *format);
+bool	is_int_type(char c);
+bool	is_int_type(char c);
+bool	is_unsigned_int_type(char c);
 
 /* =============== Definition =============== */
 
@@ -42,4 +45,13 @@ bool	is_valid_format(char *format)
 	if (!is_valid_type(*format))
 		return (false);
 	return (true);
+}
+
+bool	is_int_type(char c)
+{
+	return (ft_strchr(INT_TYPES, c));
+}
+bool	is_unsigned_int_type(char c)
+{
+	return (ft_strchr(UNSIGNED_INT_TYPES, c));
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:02:44 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 21:53:54 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,14 @@
 # define FT_PRINTF_H
 
 # include "libft.h"
+# include <stdarg.h>
 
 # define FORMAT_START '%'
 # define FORMATS ""
 # define TYPES "cspdiuxX"
+
+# define INT_TYPES "cdi"
+# define UNSIGNED_INT_TYPES "uxX"
 
 # define ERROR -1
 # define NOOP 0
@@ -40,6 +44,8 @@ typedef struct s_text_raw
 typedef struct s_format
 {
 	size_t			len;
+	bool			minus;
+	unsigned int	padding;
 	unsigned char	type;
 }					t_format;
 
@@ -55,7 +61,12 @@ typedef struct s_element
 	t_element_data	data;
 }					t_element;
 
+# include "printers.h"
+
 int					ft_printf(const char *, ...);
+
+int					parse_str(char *str, t_list **head);
+int					print_contents(t_list *head, va_list args);
 
 /* Text Raw */
 
@@ -63,12 +74,18 @@ t_element			*create_text_raw(char *p_start, char *p_end);
 
 /* Format */
 
-t_format			*create_format(void);
+t_element			*create_format(void);
 t_status			parse_percent(t_format *format, char c);
 
 /* Printers */
 
 int					print_text_el(t_element *el);
-int					print_format_el(t_element *el);
+int					print_format_el(t_element *el, va_list args);
+
+/* Validators */
+
+bool				is_valid_format(char *format);
+bool				is_int_type(char c);
+bool				is_unsigned_int_type(char c);
 
 #endif

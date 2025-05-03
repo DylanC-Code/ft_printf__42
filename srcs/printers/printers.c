@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:06:26 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 21:50:19 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,13 @@
 
 /* =============== Declaration =============== */
 
-int				print_contents(t_list *head);
 int				print_text_el(t_element *el);
-int				print_format_el(t_element *el);
-unsigned int	print_n(char *text, size_t n);
+int				print_format_el(t_element *el, va_list args);
+int				print_contents(t_list *head, va_list args);
 
 /* =============== Definition =============== */
 
-int	print_contents(t_list *head)
+int	print_contents(t_list *head, va_list args)
 {
 	t_list		*next;
 	t_element	*element;
@@ -39,7 +38,7 @@ int	print_contents(t_list *head)
 		if (element->type == T_TEXT)
 			written_bytes += print_text_el(element);
 		else
-			written_bytes += print_format_el(element);
+			written_bytes += print_format_el(element, args);
 		free(head);
 		head = next;
 	}
@@ -58,7 +57,7 @@ int	print_text_el(t_element *el)
 	return (free(el), written_bytes);
 }
 
-int	print_format_el(t_element *el)
+int	print_format_el(t_element *el, va_list args)
 {
 	size_t		written_bytes;
 	t_format	format;
@@ -66,26 +65,10 @@ int	print_format_el(t_element *el)
 	if (!el)
 		return (0);
 	format = el->data.format;
-	(void)format;
-	written_bytes = 0;
+	if (is_int_type(format.type))
+		written_bytes = print_int_type(&format, va_arg(args, int));
 	return (free(el), written_bytes);
 }
 
-unsigned int	print_n(char *text, size_t n)
-{
-	const size_t	text_len = ft_strlen(text);
-	size_t			len_to_print;
-	ssize_t			bytes_written;
 
-	bytes_written = 0;
-	if (!text)
-		return (bytes_written);
-	if (n >= text_len)
-		len_to_print = text_len;
-	else
-		len_to_print = n;
-	bytes_written = write(STDOUT_FILENO, text, len_to_print);
-	if (bytes_written >= 0)
-		return (bytes_written);
-	return (0);
-}
+

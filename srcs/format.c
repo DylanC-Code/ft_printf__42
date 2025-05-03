@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 15:09:54 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 20:04:08 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,28 +16,21 @@
 
 /* =============== Declaration =============== */
 
-t_format	*create_format(void);
-t_status	parse_percent(t_format *format, char c);
+t_element	*create_format(void);
 
 /* =============== Definition =============== */
 
-t_format	*create_format(void)
+t_element	*create_format(void)
 {
-	t_format	*format;
+	t_element	*node;
 
-	format = malloc(sizeof(t_format));
-	if (!format)
+	node = malloc(sizeof(t_element));
+	if (!node)
 		return (NULL);
-	format->len = 1;
-	format->type = 0;
-	return (format);
-}
-
-t_status	parse_percent(t_format *format, char c)
-{
-	if (c != '%')
-		return (NOOP);
-	format->len++;
-	format->type = '%';
-	return (SUCCESS);
+	node->type = T_FORMAT;
+	node->data.format.len = 1;
+	node->data.format.type = 0;
+	node->data.format.padding = 0;
+	node->data.format.minus = false;
+	return (node);
 }
