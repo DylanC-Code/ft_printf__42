@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 20:08:23 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:46:24 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,13 @@ int	main(void)
 {
 	// __builtin_printf("%2c", '5');
 	// ft_printf("%5c", 'h');
-	ft_printf("%c", 'h');
+	ft_printf("%5c", 'h');
+	// ft_printf("% i", -44);
+	// ft_printf("%i", 44);   // |44
+	// ft_printf("% i", 44);  // | 44
+	// ft_printf("% i", -44); // |-44
+	// ft_printf("%+i", 44);  // |+44
+	// ft_printf("%+i", -44); // |-44
 	// ft_printf("Salut %d les gens ", 66, 77, 9, 12333);
 	// ft_printf("Salut les gens ", 66, 77, 9, 12333);
 	return (0);

@@ -19,8 +19,10 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	ft_printf.c \
 	text_raw.c \
 	format.c \
-	format_validator.c \
-	parsers.c \
+	validators/validators.c \
+	validators/format_validator.c \
+	parsers/parsers.c \
+	parsers/flag_parsers.c \
 	printers/printers.c \
 	printers/int_printers.c \
 	printers/utils_printers.c \

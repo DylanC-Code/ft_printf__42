@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:04:20 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 19:04:29 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 23:29:51 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	parse_format(char *str, t_list **head)
 	if (!node)
 		return (free(format_el), ERROR);
 	parse_percent(&format_el->data.format, *++str);
+	parse_flags(&format_el->data.format, &str);
 	parse_type(&format_el->data.format, *str);
 	ft_lstadd_back(head, node);
 	return (format_el->data.format.len);

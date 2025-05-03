@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 21:53:54 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 00:05:36 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 
 # define FORMAT_START '%'
 # define FORMATS ""
+# define FLAGS "# +-0"
 # define TYPES "cspdiuxX"
 
 # define INT_TYPES "cdi"
@@ -61,6 +62,8 @@ typedef struct s_element
 	t_element_data	data;
 }					t_element;
 
+# include "validators.h"
+# include "parsers.h"
 # include "printers.h"
 
 int					ft_printf(const char *, ...);
