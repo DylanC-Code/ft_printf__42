@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 13:20:05 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/03 15:02:44 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 # define FORMAT_START '%'
 # define FORMATS ""
-# define TYPES "cspdiuxX%"
+# define TYPES "cspdiuxX"
 
 # define ERROR -1
 # define NOOP 0
@@ -40,6 +40,7 @@ typedef struct s_text_raw
 typedef struct s_format
 {
 	size_t			len;
+	unsigned char	type;
 }					t_format;
 
 typedef union u_element_data
@@ -59,5 +60,15 @@ int					ft_printf(const char *, ...);
 /* Text Raw */
 
 t_element			*create_text_raw(char *p_start, char *p_end);
+
+/* Format */
+
+t_format			*create_format(void);
+t_status			parse_percent(t_format *format, char c);
+
+/* Printers */
+
+int					print_text_el(t_element *el);
+int					print_format_el(t_element *el);
 
 #endif
