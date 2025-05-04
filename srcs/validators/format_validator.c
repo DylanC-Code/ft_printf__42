@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:08:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 11:08:31 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 11:37:57 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,24 @@ bool	is_valid_width(char **p_format, unsigned int *flags)
 	if (width > 0)
 		*flags &= WIDTH;
 	return (width <= INT_MAX);
+}
+bool	is_valid_precision(char **p_format, unsigned int *flags)
+{
+	unsigned long	precision;
+
+	precision = 0;
+	if (!p_format || !*p_format)
+		return (false);
+	if (**p_format != '.')
+		return (true);
+	*p_format = *p_format + 1;
+	while (**p_format && ft_isdigit(**p_format))
+	{
+		precision = precision * 10 + **p_format - '0';
+		*p_format = *p_format + 1;
+	}
+	*flags |= PRECISION;
+	return (precision <= INT_MAX);
 }
 
 bool	is_int_type(char c)

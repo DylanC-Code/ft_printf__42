@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:30:06 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 21:43:56 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 11:26:17 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 
 int	print_int_type(t_format *format, int n);
 int	print_c(t_format *format, char c);
-int	print_d(t_format *format, int n);
+int	print_di(t_format *format, int n);
 
 /* =============== Definition =============== */
 
@@ -26,8 +26,8 @@ int	print_int_type(t_format *format, int n)
 {
 	if (format->type == 'c')
 		return (print_c(format, n));
-	else if (format->type == 'd')
-		return (print_d(format, n));
+	else if (format->type == 'd' || format->type == 'i')
+		return (print_di(format, n));
 	return (0);
 }
 
@@ -43,9 +43,9 @@ int	print_c(t_format *format, char c)
 		bytes_written += print_padding(format->padding - 1);
 	return (bytes_written);
 }
-int	print_d(t_format *format, int n)
+int	print_di(t_format *format, int n)
 {
 	(void)format;
-	(void)n;
+	__builtin_printf("TEUB %d\n", n);
 	return (0);
 }

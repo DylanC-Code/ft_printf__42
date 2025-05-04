@@ -20,6 +20,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	text_raw.c \
 	format.c \
 	validators/validators.c \
+	validators/types_validators.c \
 	validators/format_validator.c \
 	parsers/parsers.c \
 	parsers/flag_parsers.c \
