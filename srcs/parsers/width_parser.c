@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   format.c                                           :+:      :+:    :+:   */
+/*   width_parser.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 16:12:11 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/04 13:48:23 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/04 13:48:58 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,25 @@
 
 /* =============== Declaration =============== */
 
-t_element	*create_format(void);
+t_status	parse_width(t_format *format, char **p_str);
 
 /* =============== Definition =============== */
 
-t_element	*create_format(void)
+t_status	parse_width(t_format *format, char **p_str)
 {
-	t_element	*node;
+	int	padding;
 
-	node = malloc(sizeof(t_element));
-	if (!node)
-		return (NULL);
-	node->type = T_FORMAT;
-	node->data.format.len = 2;
-	node->data.format.minus = false;
-	node->data.format.zero = false;
-	node->data.format.precision = 0;
-	node->data.format.hash = false;
-	node->data.format.space = false;
-	node->data.format.plus = false;
-	node->data.format.width = 0;
-	node->data.format.type = 0;
-	return (node);
+	padding = 0;
+	if (!*p_str)
+		return (ERROR);
+	while (**p_str && ft_isdigit(**p_str))
+	{
+		padding = padding * 10 + **p_str - '0';
+		*p_str = *p_str + 1;
+		format->len++;
+	}
+	if (!padding)
+		return (NOOP);
+	format->width = padding;
+	return (SUCCESS);
 }

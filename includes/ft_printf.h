@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 12:21:15 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 16:07:43 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # define FORMAT_START '%'
 # define FORMATS ""
 # define FLAGS "# +-0"
-# define TYPES "cspdiuxX"
+# define TYPES "cspdiuxX%"
 
 # define INT_TYPES "cdi"
 # define UNSIGNED_INT_TYPES "uxX"
@@ -78,7 +78,7 @@ int					print_contents(t_list *head, va_list args);
 
 /* Text Raw */
 
-t_element			*create_text_raw(char *p_start, char *p_end);
+t_element			*create_text_raw(char *p_start, size_t len);
 
 /* Format */
 

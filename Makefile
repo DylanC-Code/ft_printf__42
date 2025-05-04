@@ -24,6 +24,9 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	validators/format_validator.c \
 	parsers/parsers.c \
 	parsers/flag_parsers.c \
+	parsers/width_parser.c \
+	parsers/types/int_parsers.c \
+	parsers/types/types_parsers.c \
 	printers/printers.c \
 	printers/int_printers.c \
 	printers/utils_printers.c \

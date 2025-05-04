@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:54:29 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 12:21:15 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 15:55:20 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 /* =============== Declaration =============== */
 
-t_status	parse_width(t_format *format, char **p_str);
 t_status	parse_flags(t_format *format, char **p_str);
 t_status	parse_minus(t_format *format, char **p_str);
 t_status	parse_plus(t_format *format, char **p_str);
@@ -121,21 +120,3 @@ t_status	parse_hash(t_format *format, char **p_str)
 	return (SUCCESS);
 }
 
-t_status	parse_width(t_format *format, char **p_str)
-{
-	int	padding;
-
-	padding = 0;
-	if (!*p_str)
-		return (ERROR);
-	while (**p_str && ft_isdigit(**p_str))
-	{
-		padding = padding * 10 + **p_str - '0';
-		*p_str = *p_str + 1;
-		format->len++;
-	}
-	if (!padding)
-		return (NOOP);
-	format->width = padding;
-	return (SUCCESS);
-}

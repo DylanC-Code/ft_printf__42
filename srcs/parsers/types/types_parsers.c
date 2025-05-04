@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   text_raw.c                                         :+:      :+:    :+:   */
+/*   types_parsers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 11:48:22 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 15:40:58 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/04 15:57:15 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/04 16:25:29 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+/* =============== Importation =============== */
+
 #include "ft_printf.h"
 
-t_element	*create_text_raw(char *text, size_t len)
-{
-	t_element	*node;
+/* =============== Declaration =============== */
 
-	node = malloc(sizeof(t_element));
-	if (!node)
-		return (NULL);
-	node->type = T_TEXT;
-	node->data.text_raw.text = text;
-	node->data.text_raw.len = len;
-	return (node);
+t_status	parse_type(t_format *format, char c);
+
+/* =============== Definition =============== */
+
+t_status	parse_type(t_format *format, char c)
+{
+	format->type = c;
+	if (format->type == '%')
+		return (SUCCESS);
+	else if (ft_strchr(INT_TYPES, format->type))
+		return (parse_int_type(format));
+	return (ERROR);
 }
