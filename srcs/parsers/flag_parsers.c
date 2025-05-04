@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:54:29 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 00:30:06 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 10:15:49 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,38 @@
 
 t_status	parse_padding(t_format *format, char **p_str);
 t_status	parse_flags(t_format *format, char **p_str);
+t_status	parse_minus(t_format *format, char **p_str);
 
 /* =============== Definition =============== */
 
 t_status	parse_flags(t_format *format, char **p_str)
 {
 	t_status	padding_status;
+	t_status	minus_status;
 
+	minus_status = parse_minus(format, p_str);
+	if (minus_status == ERROR)
+		return (ERROR);
 	padding_status = parse_padding(format, p_str);
 	if (padding_status == ERROR)
 		return (ERROR);
-	return (padding_status);
+	if (padding_status || minus_status)
+		return (parse_flags(format, p_str), SUCCESS);
+	return (NOOP);
+}
+
+t_status	parse_minus(t_format *format, char **p_str)
+{
+	if (!p_str || !*p_str)
+		return (ERROR);
+	if (**p_str != '-')
+		return (NOOP);
+	if (format->minus == true)
+		return (ERROR);
+	format->minus = true;
+	format->len++;
+	*p_str = *p_str + 1;
+	return (SUCCESS);
 }
 
 t_status	parse_padding(t_format *format, char **p_str)
