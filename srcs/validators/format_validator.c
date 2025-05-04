@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:08:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 10:42:33 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 11:08:31 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,56 +20,62 @@ bool	is_valid_format(char *format);
 bool	is_int_type(char c);
 bool	is_int_type(char c);
 bool	is_unsigned_int_type(char c);
-bool	is_valid_flag(char **p_format);
-void	jump_width(char **p_format);
+bool	is_valid_flag(char **p_format, unsigned int *flags);
+bool	is_valid_width(char **p_format, unsigned int *flags);
 void	set_flag(unsigned int *bitmask, char flag);
 
 /* =============== Definition =============== */
 
 bool	is_valid_format(char *format)
 {
+	unsigned int	flags;
+
+	flags = 0;
 	if (*format++ != FORMAT_START)
 		return (false);
 	if (*format == FORMAT_START)
 		return (true);
-	if (!is_valid_flag(&format))
+	if (!is_valid_flag(&format, &flags))
 		return (false);
-	jump_width(&format);
-	if (!is_valid_type(*format))
+	if (!is_valid_width(&format, &flags))
+		return (false);
+	if (!is_valid_type(*format, flags))
 		return (false);
 	return (true);
 }
 
-bool	is_valid_flag(char **p_format)
+bool	is_valid_flag(char **p_format, unsigned int *flags)
 {
-	unsigned int	bitmask;
-
-	bitmask = 0;
 	if (!*p_format)
 		return (false);
 	while (**p_format && ft_strchr(FLAGS, **p_format))
 	{
-		if (is_flag_set(bitmask, **p_format))
+		if (is_flag_set(*flags, **p_format))
 			return (false);
 		else
-			(set_flag(&bitmask, **p_format));
+			(set_flag(flags, **p_format));
 		*p_format = *p_format + 1;
 	}
 	return (true);
 }
 
-void	jump_width(char **p_format)
+bool	is_valid_width(char **p_format, unsigned int *flags)
 {
-	int	width;
+	long unsigned	width;
 
 	width = 0;
 	if (!p_format || !*p_format)
-		return ;
-	while (width >= 0 && ft_isdigit(**p_format))
+		return (false);
+	if (!ft_isdigit(**p_format))
+		return (true);
+	while (width <= INT_MAX && ft_isdigit(**p_format))
 	{
 		width = width * 10 + **p_format - '0';
 		*p_format = *p_format + 1;
 	}
+	if (width > 0)
+		*flags &= WIDTH;
+	return (width <= INT_MAX);
 }
 
 bool	is_int_type(char c)

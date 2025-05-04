@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validators.c                                       :+:      :+:    :+:   */
+/*   types_validators.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/03 23:55:10 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 11:17:01 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/04 11:16:52 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/04 11:17:15 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,27 @@
 
 /* =============== Declaration =============== */
 
-bool	is_flag_set(unsigned int bitmask, char c);
-bool	is_valid_type(char c, unsigned int flags);
 bool	is_valid_type_c(unsigned int flags);
 bool	is_valid_type_di(unsigned int flags);
 
 /* =============== Definition =============== */
 
-bool	is_flag_set(unsigned int bitmask, char flag)
+bool	is_valid_type_c(unsigned int flags)
 {
-	if (flag == '-' && bitmask & MINUS)
-		return (true);
-	else if (flag == '+' && bitmask & PLUS)
-		return (true);
-	else if (flag == '#' && bitmask & HASH)
-		return (true);
-	else if (flag == '0' && bitmask & ZERO)
-		return (true);
-	else if (flag == ' ' && bitmask & SPACE)
-		return (true);
-	return (false);
+	if (flags & ZERO)
+		return (false);
+	else if (flags & PLUS)
+		return (false);
+	else if (flags & SPACE)
+		return (false);
+	else if (flags & HASH)
+		return (false);
+	else if (flags & PRECISION)
+		return (false);
+	return (true);
 }
 
-bool	is_valid_type(char type, unsigned int flags)
+bool	is_valid_type_di(unsigned int flags)
 {
-	if (type == 'c')
-		return (is_valid_type_c(flags));
-	if (type == 'd' || type == 'i')
-		return (is_valid_type_di(flags));
-	return (false);
+	return (!(flags & HASH));
 }
