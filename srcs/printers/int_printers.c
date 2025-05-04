@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:30:06 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 21:33:01 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 22:19:40 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,14 @@ int	print_di(t_format *format, int n)
 
 	(void)is_positive;
 	result = ft_itoa(ft_abs(n));
-	if (format->precision)
-		apply_precision(&result, format->precision);
+	if (apply_precision(&result, format->precision) == ERROR)
+		return (ERROR);
+	if (apply_sign(&result, is_positive, format->plus) == ERROR)
+		return (ERROR);
+	// if (format->plus && is_positive)
+	// 	apply_positive(&result);
+	// else if (!is_positive)
+	// 	apply_negative(&result);
 	__builtin_printf("YEEE =>%s\n", result);
 	return (0);
 }

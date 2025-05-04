@@ -19,7 +19,8 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	ft_printf.c \
 	text_raw.c \
 	format.c \
-	transformers.c \
+	transformers/sign_transformer.c \
+	transformers/precision_transformer.c \
 	validators/validators.c \
 	validators/types_validators.c \
 	validators/format_validator.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transformers.c                                     :+:      :+:    :+:   */
+/*   precision_transformer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:40:46 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 21:31:50 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 22:20:44 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@
 
 /* =============== Declaration =============== */
 
-t_status		apply_precision(char **p_nbr, unsigned int precision);
+t_status		apply_precision(char **p_nbr, long precision);
 static t_status	apply_precision_edge_case(char **p_str);
 static t_status	apply_precision_normal_case(char **p_nbr, const size_t nbr_len,
 					unsigned int precision);
 
 /* =============== Definition =============== */
 
-t_status	apply_precision(char **p_nbr, unsigned int precision)
+t_status	apply_precision(char **p_nbr, long precision)
 {
 	const size_t	nbr_len = ft_strlen(*p_nbr);
 
-	if (precision == 0 && nbr_len == 0 && ft_strncmp(*p_nbr, "0", 1))
+	if (precision < 0)
+		return (NOOP);
+	if (precision == 0 && nbr_len == 1 && ft_strncmp(*p_nbr, "0", 1) == 0)
 		return (apply_precision_edge_case(p_nbr));
-	if (precision <= nbr_len)
+	if ((long unsigned)precision <= nbr_len)
 		return (SUCCESS);
 	return (apply_precision_normal_case(p_nbr, nbr_len, precision));
 }

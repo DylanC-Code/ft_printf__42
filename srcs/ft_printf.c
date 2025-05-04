@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 21:01:29 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 22:20:03 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(void)
 	// ft_printf("%5c", 'h');
 	// ft_printf("Salut %-5c les gens", 'A');
 	// __builtin_printf("%aswf", 42);
-	ft_printf("%.5i", 44);
+	ft_printf("%+.5i", 42);
 	// ft_printf("%i", 44);   // |44
 	// ft_printf("% i", 44);  // | 44
 	// ft_printf("% i", -44); // |-44

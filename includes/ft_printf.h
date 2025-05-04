@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 20:42:03 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 22:00:17 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_format
 	size_t			len;
 	bool			minus;
 	bool			zero;
-	unsigned int	precision;
+	long			precision;
 	bool			hash;
 	bool			space;
 	bool			plus;
@@ -69,8 +69,8 @@ typedef struct s_element
 
 # include "parsers.h"
 # include "printers.h"
-# include "validators.h"
 # include "transformers.h"
+# include "validators.h"
 
 int					ft_printf(const char *, ...);
 
