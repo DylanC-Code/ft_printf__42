@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 11:53:34 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 12:21:15 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,12 @@ typedef struct s_format
 {
 	size_t			len;
 	bool			minus;
-	bool			plus;
-	bool			space;
-	bool			hash;
-	unsigned int	padding;
+	bool			zero;
 	unsigned int	precision;
+	bool			hash;
+	bool			space;
+	bool			plus;
+	unsigned int	width;
 	unsigned char	type;
 }					t_format;
 

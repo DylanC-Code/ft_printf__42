@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:30:06 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 11:50:49 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 12:21:15 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	print_c(t_format *format, char c)
 	int	bytes_written;
 
 	bytes_written = 0;
-	if (!format->minus && format->padding > 1)
-		bytes_written += print_padding(format->padding - 1);
+	if (!format->minus && format->width > 1)
+		bytes_written += print_padding(format->width - 1);
 	bytes_written += write(STDOUT_FILENO, &c, 1);
-	if (format->minus && format->padding > 1)
-		bytes_written += print_padding(format->padding - 1);
+	if (format->minus && format->width > 1)
+		bytes_written += print_padding(format->width - 1);
 	return (bytes_written);
 }
 int	print_di(t_format *format, int n)
