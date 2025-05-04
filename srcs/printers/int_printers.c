@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:30:06 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 12:21:15 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 21:33:01 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,13 @@ int	print_c(t_format *format, char c)
 }
 int	print_di(t_format *format, int n)
 {
-	char	*ascii_n;
+	const bool	is_positive = n >= 0;
+	char		*result;
 
-	ascii_n = ft_itoa(n);
-	(void)ascii_n;
-	(void)format;
-	__builtin_printf("TEUB %4d\n", 6893211);
+	(void)is_positive;
+	result = ft_itoa(ft_abs(n));
+	if (format->precision)
+		apply_precision(&result, format->precision);
+	__builtin_printf("YEEE =>%s\n", result);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 16:07:43 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 20:42:03 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ typedef struct s_element
 # include "parsers.h"
 # include "printers.h"
 # include "validators.h"
+# include "transformers.h"
 
 int					ft_printf(const char *, ...);
 
-int					parse_str(char *str, t_list **head);
 int					print_contents(t_list *head, va_list args);
 
 /* Text Raw */
@@ -83,7 +83,6 @@ t_element			*create_text_raw(char *p_start, size_t len);
 /* Format */
 
 t_element			*create_format(void);
-t_status			parse_percent(t_format *format, char c);
 
 /* Printers */
 

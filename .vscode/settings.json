@@ -3,6 +3,7 @@
         "ft_printf.h": "c",
         "printers.h": "c",
         "validators.h": "c",
-        "parsers.h": "c"
+        "parsers.h": "c",
+        "transformers.h": "c"
     }
 }

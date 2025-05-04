@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 13:54:25 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 21:01:29 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ int	ft_printf(const char *str, ...)
 	if (!str)
 		return (ERROR);
 	list = NULL;
-	parse_str((char *)str, &list);
+	if (parse_str((char *)str, &list) == ERROR)
+		return (ERROR); // TODO: FREE EVERYTHING
 	if (!list)
 		return (0);
 	written_bytes = print_contents(list, args);
@@ -41,9 +42,9 @@ int	main(void)
 {
 	// __builtin_printf("%2c", '5');
 	// ft_printf("%5c", 'h');
-	ft_printf("%-5d", 42);
+	// ft_printf("Salut %-5c les gens", 'A');
 	// __builtin_printf("%aswf", 42);
-	// ft_printf("% i", -44);
+	ft_printf("%.5i", 44);
 	// ft_printf("%i", 44);   // |44
 	// ft_printf("% i", 44);  // | 44
 	// ft_printf("% i", -44); // |-44

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:04:20 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 15:57:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/04 20:56:27 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,14 @@
 
 /* =============== Declaration =============== */
 
-int			parse_str(char *str, t_list **head);
+t_status	parse_str(char *str, t_list **head);
 int			parse_text(char *p_start, t_list **head);
 int			parse_format(char *str, t_list **head);
-t_status	parse_percent(t_format *format, char c);
 t_status	parse_type(t_format *format, char c);
 
 /* =============== Definition =============== */
 
-int	parse_str(char *str, t_list **head)
+t_status	parse_str(char *str, t_list **head)
 {
 	char	*start_format;
 	ssize_t	format_len;
@@ -38,7 +37,7 @@ int	parse_str(char *str, t_list **head)
 		text_len = parse_text(str, head);
 		if (text_len < 0)
 			return (ERROR);
-		format_len = parse_format(start_format, head);
+		format_len = parse_format(start_format + 1, head);
 		if (format_len <= 0)
 			return (ERROR);
 		str = start_format + format_len;
@@ -90,21 +89,10 @@ int	parse_format(char *str, t_list **head)
 		return (free(format_el), ERROR);
 	if (parse_width(format, &str) == ERROR)
 		return (free(format_el), ERROR);
-	// if (parse_precision(format, &str) == ERROR)
-	// 	return (free(format_el), ERROR);
+	if (parse_precision(format, &str) == ERROR)
+		return (free(format_el), ERROR);
 	if (parse_type(format, *str) == ERROR)
 		return (free(format_el), ERROR);
 	ft_lstadd_back(head, node);
 	return (format->len);
 }
-
-t_status	parse_percent(t_format *format, char c)
-{
-	if (c != '%')
-		return (NOOP);
-	format->len++;
-	format->type = '%';
-	return (SUCCESS);
-}
-
-
