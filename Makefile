@@ -21,6 +21,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	entities/format.c \
 	transformers/transformers.c \
 	transformers/int_transformers.c \
+	transformers/pchar_transformer.c \
 	transformers/width_transformer.c \
 	transformers/sign_transformer.c \
 	transformers/precision_transformer.c \
@@ -32,6 +33,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	parsers/width_parser.c \
 	parsers/precision_parser.c \
 	parsers/types/int_parsers.c \
+	parsers/types/pchar_parsers.c \
 	parsers/types/types_parsers.c \
 	printers/printers.c \
 	printers/utils_printers.c \

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:55:32 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 15:49:41 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:15:51 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_status	apply_format(t_element *element, va_list args)
 	format = &element->data.format;
 	if (ft_strchr(INT_TYPES, format->type))
 		return (transform_int(format, va_arg(args, int)));
+	else if (format->type == 's')
+		return (transform_pchar(format, va_arg(args, char *)));
 	return (ERROR);
 }
-

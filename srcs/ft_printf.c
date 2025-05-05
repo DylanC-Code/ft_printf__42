@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:00:46 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:52:33 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int	main(void)
 	// ft_printf("%5c", 'h');
 	// ft_printf("Salut %-5c les gens", 'A');
 	// __builtin_printf("%aswf", 42);
-	written_bytes = ft_printf("Salut %+08.5d les gens!\n", 42); // "  +00042"✅
+	written_bytes = ft_printf("Salut %+08.5d les gens %c, |%5.3s|!\n", 42, 'Y', "Une string"); // "  +00042"✅
 	// ft_printf("% -10.3d", 7);                 // " 007      "
 	// ft_printf("%0.0d", 0);                    // ""✅
 	// ft_printf("%5.0d", 0);                    // "     "

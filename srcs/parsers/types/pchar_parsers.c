@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   transformers.h                                     :+:      :+:    :+:   */
+/*   pchar_parsers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 20:42:11 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:50:21 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/05 16:08:17 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/05 16:13:27 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TRANSFORMERS_H
-# define TRANSFORMERS_H
+/* =============== Importation =============== */
 
-# include "ft_printf.h"
+#include "ft_printf.h"
 
-t_status	apply_formats(t_list *head, va_list args);
-t_status	apply_precision(t_format *format);
-t_status	apply_sign(t_format *format, bool is_positive);
-t_status	apply_width(t_format *format);
+/* =============== Declaration =============== */
 
-/* Types */
-t_status	transform_int(t_format *format, int n);
-t_status	transform_pchar(t_format *format, char *str);
+t_status	parse_pchar_type(t_format *format);
 
-#endif
+/* =============== Definition =============== */
+
+t_status	parse_pchar_type(t_format *format)
+{
+	if (format->zero || format->plus || format->space || format->hash)
+		return (ERROR);
+	return (SUCCESS);
+}
