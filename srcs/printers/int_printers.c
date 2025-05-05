@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 21:30:06 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 22:52:09 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 11:23:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	print_di(t_format *format, int n)
 	if (apply_precision(&result, format->precision) == ERROR)
 		return (ERROR);
 	if (apply_sign(format, &result, is_positive) == ERROR)
+		return (ERROR);
+	if (apply_width(format, &result) == ERROR)
 		return (ERROR);
 	// if (format->plus && is_positive)
 	// 	apply_positive(&result);

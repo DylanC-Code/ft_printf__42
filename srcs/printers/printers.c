@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/03 21:50:19 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 09:48:02 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 /* =============== Declaration =============== */
 
-int				print_text_el(t_element *el);
-int				print_format_el(t_element *el, va_list args);
-int				print_contents(t_list *head, va_list args);
+int	print_text_el(t_element *el);
+int	print_format_el(t_element *el, va_list args);
+int	print_contents(t_list *head, va_list args);
 
 /* =============== Definition =============== */
 
@@ -59,9 +59,10 @@ int	print_text_el(t_element *el)
 
 int	print_format_el(t_element *el, va_list args)
 {
-	size_t		written_bytes;
+	int			written_bytes;
 	t_format	format;
 
+	written_bytes = 0;
 	if (!el)
 		return (0);
 	format = el->data.format;
@@ -69,6 +70,3 @@ int	print_format_el(t_element *el, va_list args)
 		written_bytes = print_int_type(&format, va_arg(args, int));
 	return (free(el), written_bytes);
 }
-
-
-
