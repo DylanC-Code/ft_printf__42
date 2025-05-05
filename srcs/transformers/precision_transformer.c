@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:40:46 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 22:20:44 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 15:52:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,26 @@
 
 /* =============== Declaration =============== */
 
-t_status		apply_precision(char **p_nbr, long precision);
+t_status		apply_precision(t_format *format);
 static t_status	apply_precision_edge_case(char **p_str);
 static t_status	apply_precision_normal_case(char **p_nbr, const size_t nbr_len,
 					unsigned int precision);
 
 /* =============== Definition =============== */
 
-t_status	apply_precision(char **p_nbr, long precision)
+t_status	apply_precision(t_format *format)
 {
-	const size_t	nbr_len = ft_strlen(*p_nbr);
+	const size_t	nbr_len = ft_strlen(format->text);
 
-	if (precision < 0)
+	if (format->precision < 0)
 		return (NOOP);
-	if (precision == 0 && nbr_len == 1 && ft_strncmp(*p_nbr, "0", 1) == 0)
-		return (apply_precision_edge_case(p_nbr));
-	if ((long unsigned)precision <= nbr_len)
+	if (format->precision == 0 && nbr_len == 1 && ft_strncmp(format->text, "0",
+			1) == 0)
+		return (apply_precision_edge_case(&format->text));
+	if ((long unsigned)format->precision <= nbr_len)
 		return (SUCCESS);
-	return (apply_precision_normal_case(p_nbr, nbr_len, precision));
+	return (apply_precision_normal_case(&format->text, nbr_len,
+			format->precision));
 }
 
 static t_status	apply_precision_edge_case(char **p_nbr)

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 16:12:11 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 14:28:21 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ t_element	*create_format(void)
 	node->data.format.plus = false;
 	node->data.format.width = 0;
 	node->data.format.type = 0;
+	node->data.format.text = NULL;
 	return (node);
 }

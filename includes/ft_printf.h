@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 13:19:59 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 22:00:17 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/05 15:22:39 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_format
 	bool			plus;
 	unsigned int	width;
 	unsigned char	type;
+	char			*text;
 }					t_format;
 
 typedef union u_element_data
@@ -74,8 +75,6 @@ typedef struct s_element
 
 int					ft_printf(const char *, ...);
 
-int					print_contents(t_list *head, va_list args);
-
 /* Text Raw */
 
 t_element			*create_text_raw(char *p_start, size_t len);
@@ -86,8 +85,7 @@ t_element			*create_format(void);
 
 /* Printers */
 
-int					print_text_el(t_element *el);
-int					print_format_el(t_element *el, va_list args);
+int					print_contents(t_list *head);
 
 /* Validators */
 

@@ -17,8 +17,10 @@ BUILD_DIR = build/
 SRC_DIR = srcs/
 SRCS  = $(addprefix $(SRC_DIR), \
 	ft_printf.c \
-	text_raw.c \
-	format.c \
+	entities/text_raw.c \
+	entities/format.c \
+	transformers/transformers.c \
+	transformers/int_transformers.c \
 	transformers/width_transformer.c \
 	transformers/sign_transformer.c \
 	transformers/precision_transformer.c \
@@ -32,7 +34,6 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	parsers/types/int_parsers.c \
 	parsers/types/types_parsers.c \
 	printers/printers.c \
-	printers/int_printers.c \
 	printers/utils_printers.c \
 )
 
