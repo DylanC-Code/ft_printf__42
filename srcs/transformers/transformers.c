@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:55:32 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:15:51 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:44:14 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ t_status	apply_formats(t_list *head, va_list args)
 		next = head->next;
 		if (apply_format(element, args) == ERROR)
 			return (ERROR);
-		// free(head);
 		head = next;
 	}
 	return (SUCCESS);

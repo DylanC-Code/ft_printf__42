@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:39:16 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:50:31 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:43:58 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static t_status	fill_width_with_zero(t_format *format)
 	format->text = result;
 	return (SUCCESS);
 }
+
 static t_status	fill_width_with_space(t_format *format)
 {
 	const size_t	len = ft_strlen(format->text);

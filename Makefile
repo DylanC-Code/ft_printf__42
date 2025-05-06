@@ -26,9 +26,6 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	transformers/width_transformer.c \
 	transformers/sign_transformer.c \
 	transformers/precision_transformer.c \
-	validators/validators.c \
-	validators/types_validators.c \
-	validators/format_validator.c \
 	parsers/parsers.c \
 	parsers/flags/flag_parsers.c \
 	parsers/flags/hash_parser.c \

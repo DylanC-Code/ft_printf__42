@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:42:11 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 18:03:09 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 04:00:48 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define TRANSFORMERS_H
 
 # include "ft_printf.h"
+# include <stdarg.h>
 
 t_status	apply_formats(t_list *head, va_list args);
 t_status	apply_precision(t_format *format);
