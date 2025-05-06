@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 15:21:42 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:36:08 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	print_contents(t_list *head)
 			written_bytes += print_text_el(element);
 		else
 			written_bytes += print_format_el(element);
+		free_el(head->content);
 		free(head);
 		head = next;
 	}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 03:35:03 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/06 03:23:35 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/06 03:34:09 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,29 @@
 
 /* =============== Declaration =============== */
 
-int	ft_printf(const char *str, ...);
+void	free_list_el(t_list *head);
+void	free_el(t_element *el);
 
 /* =============== Definition =============== */
 
-int	ft_printf(const char *str, ...)
+void	free_list_el(t_list *head)
 {
-	t_list	*list;
-	va_list	args;
+	t_list	*next;
 
-	va_start(args, str);
-	if (!str)
-		return (ERROR);
-	list = NULL;
-	if (parse_str((char *)str, &list) == ERROR)
-		return (free_list_el(list), ERROR);
-	if (!list)
-		return (0);
-	if (apply_formats(list, args) == ERROR)
-		return (free_list_el(list), ERROR);
-	return (print_contents(list));
+	while (head)
+	{
+		next = head->next;
+		free_el(head->content);
+		free(head);
+		head = next;
+	}
+}
+
+void	free_el(t_element *el)
+{
+	if (!el)
+		return ;
+	if (el->type == T_FORMAT)
+		(free(el->data.format.text));
+	return (free(el));
 }

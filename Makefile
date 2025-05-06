@@ -17,6 +17,7 @@ BUILD_DIR = build/
 SRC_DIR = srcs/
 SRCS  = $(addprefix $(SRC_DIR), \
 	ft_printf.c \
+	utils.c \
 	entities/text_raw.c \
 	entities/format.c \
 	transformers/transformers.c \
@@ -29,7 +30,12 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	validators/types_validators.c \
 	validators/format_validator.c \
 	parsers/parsers.c \
-	parsers/flag_parsers.c \
+	parsers/flags/flag_parsers.c \
+	parsers/flags/hash_parser.c \
+	parsers/flags/minus_parser.c \
+	parsers/flags/plus_parser.c \
+	parsers/flags/space_parser.c \
+	parsers/flags/zero_parser.c \
 	parsers/width_parser.c \
 	parsers/precision_parser.c \
 	parsers/types/int_parsers.c \

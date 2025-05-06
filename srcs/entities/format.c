@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 14:28:21 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:22:40 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 /* =============== Declaration =============== */
 
 t_element	*create_format(void);
+void		free_format(t_format *format);
 
 /* =============== Definition =============== */
 
@@ -39,4 +40,12 @@ t_element	*create_format(void)
 	node->data.format.type = 0;
 	node->data.format.text = NULL;
 	return (node);
+}
+
+void	free_format(t_format *format)
+{
+	if (!format)
+		return ;
+	free(format->text);
+	free(format);
 }

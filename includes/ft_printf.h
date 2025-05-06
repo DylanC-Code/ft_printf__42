@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:37:22 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 17:59:35 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:33:05 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,9 @@ typedef struct s_element
 # include "validators.h"
 
 int					ft_printf(const char *, ...);
+
+void				free_list_el(t_list *head);
+void				free_el(t_element *el);
 
 /* Text Raw */
 

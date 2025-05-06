@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 22:54:29 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/04 15:55:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/06 03:42:29 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,6 @@
 /* =============== Declaration =============== */
 
 t_status	parse_flags(t_format *format, char **p_str);
-t_status	parse_minus(t_format *format, char **p_str);
-t_status	parse_plus(t_format *format, char **p_str);
-t_status	parse_space(t_format *format, char **p_str);
-t_status	parse_hash(t_format *format, char **p_str);
-t_status	parse_zero(t_format *format, char **p_str);
 
 /* =============== Definition =============== */
 
@@ -53,70 +48,3 @@ t_status	parse_flags(t_format *format, char **p_str)
 		return (parse_flags(format, p_str), SUCCESS);
 	return (NOOP);
 }
-
-t_status	parse_minus(t_format *format, char **p_str)
-{
-	if (!p_str || !*p_str)
-		return (ERROR);
-	if (**p_str != '-')
-		return (NOOP);
-	if (format->minus == true)
-		return (ERROR);
-	format->minus = true;
-	format->len++;
-	*p_str = *p_str + 1;
-	return (SUCCESS);
-}
-t_status	parse_zero(t_format *format, char **p_str)
-{
-	if (!p_str || !*p_str)
-		return (ERROR);
-	if (**p_str != '0')
-		return (NOOP);
-	if (format->zero == true)
-		return (ERROR);
-	format->zero = true;
-	format->len++;
-	*p_str = *p_str + 1;
-	return (SUCCESS);
-}
-t_status	parse_plus(t_format *format, char **p_str)
-{
-	if (!p_str || !*p_str)
-		return (ERROR);
-	if (**p_str != '+')
-		return (NOOP);
-	if (format->plus == true)
-		return (ERROR);
-	format->plus = true;
-	format->len++;
-	*p_str = *p_str + 1;
-	return (SUCCESS);
-}
-t_status	parse_space(t_format *format, char **p_str)
-{
-	if (!p_str || !*p_str)
-		return (ERROR);
-	if (**p_str != ' ')
-		return (NOOP);
-	if (format->space == true)
-		return (ERROR);
-	format->space = true;
-	format->len++;
-	*p_str = *p_str + 1;
-	return (SUCCESS);
-}
-t_status	parse_hash(t_format *format, char **p_str)
-{
-	if (!p_str || !*p_str)
-		return (ERROR);
-	if (**p_str != '#')
-		return (NOOP);
-	if (format->hash == true)
-		return (ERROR);
-	format->hash = true;
-	format->len++;
-	*p_str = *p_str + 1;
-	return (SUCCESS);
-}
-

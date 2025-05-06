@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   plus_parser.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 03:35:03 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/06 03:40:21 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/06 03:40:43 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,20 @@
 
 /* =============== Declaration =============== */
 
-int	ft_printf(const char *str, ...);
+t_status	parse_plus(t_format *format, char **p_str);
 
 /* =============== Definition =============== */
 
-int	ft_printf(const char *str, ...)
+t_status	parse_plus(t_format *format, char **p_str)
 {
-	t_list	*list;
-	va_list	args;
-
-	va_start(args, str);
-	if (!str)
+	if (!p_str || !*p_str)
 		return (ERROR);
-	list = NULL;
-	if (parse_str((char *)str, &list) == ERROR)
-		return (free_list_el(list), ERROR);
-	if (!list)
-		return (0);
-	if (apply_formats(list, args) == ERROR)
-		return (free_list_el(list), ERROR);
-	return (print_contents(list));
+	if (**p_str != '+')
+		return (NOOP);
+	if (format->plus == true)
+		return (ERROR);
+	format->plus = true;
+	format->len++;
+	*p_str = *p_str + 1;
+	return (SUCCESS);
 }
