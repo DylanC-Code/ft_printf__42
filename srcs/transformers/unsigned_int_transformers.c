@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   int_parsers.c                                      :+:      :+:    :+:   */
+/*   unsigned_int_transformers.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 16:19:27 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 21:49:31 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/07 20:08:58 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/07 22:17:46 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,39 +16,28 @@
 
 /* =============== Declaration =============== */
 
-t_status	parse_int_type(t_format *format);
-t_status	parse_type_di(t_format *format);
-t_status	parse_type_c(t_format *format);
+t_status	transform_unsigned_int(t_format *format, unsigned int nbr);
+t_status	transform_u(t_format *format, unsigned int nbr);
 
 /* =============== Definition =============== */
 
-t_status	parse_int_type(t_format *format)
+t_status	transform_unsigned_int(t_format *format, unsigned int nbr)
 {
-	if (format->type == 'd' || format->type == 'i')
-		return (parse_type_di(format));
-	if (format->type == 'c')
-		return (parse_type_c(format));
+	if (format->type == 'u')
+		return (transform_u(format, nbr));
 	return (ERROR);
 }
 
-t_status	parse_type_di(t_format *format)
+t_status	transform_u(t_format *format, unsigned int nbr)
 {
-	if (format->hash)
+	// format->text = utoa_base(nbr, "012456789abcdef");
+	format->text = ft_uitoa(nbr);
+	if (!format->text)
 		return (ERROR);
-	return (SUCCESS);
-}
-
-t_status	parse_type_c(t_format *format)
-{
-	if (format->zero)
+	if (apply_precision(format) == ERROR)
 		return (ERROR);
-	else if (format->plus)
+	if (apply_width(format) == ERROR)
 		return (ERROR);
-	else if (format->space)
-		return (ERROR);
-	else if (format->hash)
-		return (ERROR);
-	else if (format->precision >= 0)
-		return (ERROR);
+	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/23 16:13:30 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 18:05:02 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 22:17:05 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,6 @@ t_list				*ft_lstmap(t_list *lst, void *(*f)(void *),
 long int			ft_abs(int n);
 size_t				ft_strset(char *str, char c, size_t n);
 char				*ft_itoa_base(ssize_t nbr, char *base);
+char				*ft_uitoa(unsigned int n);
 
 #endif

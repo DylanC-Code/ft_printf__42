@@ -6,20 +6,19 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 16:03:03 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 18:19:38 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 22:07:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 /* =============== Importation =============== */
 
 #include "ft_printf.h"
-#include <stdint.h>
 
 /* =============== Declaration =============== */
 
 t_status		transform_pvoid(t_format *format, void *ptr);
-static char		*utoa_base(uintptr_t n, char *base);
 static t_status	transform_null_ptr(t_format *format);
+static char		*ultoa_base(uintptr_t n, char *base);
 
 /* =============== Definition =============== */
 
@@ -31,7 +30,7 @@ t_status	transform_pvoid(t_format *format, void *ptr)
 	if (!ptr)
 		return (transform_null_ptr(format));
 	addr = (uintptr_t)ptr;
-	hex = utoa_base(addr, "0123456789abcdef");
+	hex = ultoa_base(addr, "0123456789abcdef");
 	if (!hex)
 		return (ERROR);
 	format->text = ft_strjoin("0x", hex);
@@ -43,7 +42,16 @@ t_status	transform_pvoid(t_format *format, void *ptr)
 	return (free(hex), SUCCESS);
 }
 
-static char	*utoa_base(uintptr_t n, char *base)
+static t_status	transform_null_ptr(t_format *format)
+{
+	format->text = ft_strdup("(nil)");
+	if (!format->text)
+		return (ERROR);
+	format->text_len = ft_strlen(format->text);
+	return (SUCCESS);
+}
+
+static char	*ultoa_base(uintptr_t n, char *base)
 {
 	size_t	base_len;
 	int		i;
@@ -62,13 +70,4 @@ static char	*utoa_base(uintptr_t n, char *base)
 		n /= base_len;
 	}
 	return (strdup(&buffer[i + 1]));
-}
-
-static t_status	transform_null_ptr(t_format *format)
-{
-	format->text = ft_strdup("(nil)");
-	if (!format->text)
-		return (ERROR);
-	format->text_len = ft_strlen(format->text);
-	return (SUCCESS);
 }

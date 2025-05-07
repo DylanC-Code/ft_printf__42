@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 14:33:43 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 17:52:12 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 21:47:36 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_element	*create_format(void)
 	node->data.format.len = 2;
 	node->data.format.minus = false;
 	node->data.format.zero = false;
-	node->data.format.precision = 0;
+	node->data.format.precision = -1;
 	node->data.format.hash = false;
 	node->data.format.space = false;
 	node->data.format.plus = false;

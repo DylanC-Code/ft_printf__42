@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:42:11 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 16:04:32 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 20:10:39 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ t_status	apply_width(t_format *format);
 t_status	transform_int(t_format *format, int n);
 t_status	transform_pchar(t_format *format, char *str);
 t_status	transform_pvoid(t_format *format, void *addr);
+t_status	transform_unsigned_int(t_format *format, unsigned int nbr);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:37:22 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 04:04:41 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 22:17:11 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "parsers.h"
 # include "printers.h"
 # include "transformers.h"
+# include <stdint.h>
 # include <stdio.h>
 
 # define FORMAT_START '%'
@@ -32,8 +33,8 @@
 # define NOOP 0
 # define SUCCESS 1
 
-int			ft_printf(const char *str, ...)__attribute__((format(printf, 1,
-    2)));
+int			ft_printf(const char *str, ...) __attribute__((format(printf, 1,
+						2)));
 
 void		free_list_el(t_list *head);
 void		free_el(t_element *el);

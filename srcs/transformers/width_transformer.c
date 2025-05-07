@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:39:16 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 16:45:18 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 21:44:44 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_status	apply_width(t_format *format)
 {
 	if (format->minus)
 		return (fill_width_with_space_by_end(format));
-	else if (format->zero && !format->precision)
+	else if (format->zero && format->precision == 0)
 		return (fill_width_with_zero(format));
 	return (fill_width_with_space(format));
 }
