@@ -23,6 +23,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	transformers/transformers.c \
 	transformers/int_transformers.c \
 	transformers/pchar_transformer.c \
+	transformers/pvoid_transformer.c \
 	transformers/width_transformer.c \
 	transformers/sign_transformer.c \
 	transformers/precision_transformer.c \
@@ -36,8 +37,9 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	parsers/width_parser.c \
 	parsers/precision_parser.c \
 	parsers/types/int_parsers.c \
-	parsers/types/types_parsers.c \
 	parsers/types/pchar_parsers.c \
+	parsers/types/pvoid_parsers.c \
+	parsers/types/types_parsers.c \
 	printers/printers.c \
 	printers/utils_printers.c \
 )
@@ -47,8 +49,8 @@ DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(BUILD_DIR) $(BUILD_DIR)$(LIB) $(OBJS)
-	@$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BUILD_DIR)$(LIB)
+$(NAME): $(BUILD_DIR) $(LIB) $(OBJS)
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BUILD_DIR)$(LIB_DIR)*.o
 	@echo
 	@echo "[$(NAME)] Archive generated ✅"
 
@@ -57,18 +59,22 @@ $(BUILD_DIR)%.o: %.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "[$(NAME)] Compiling $<"
 
-$(BUILD_DIR)$(LIB): $(LIB)
-	@$(MAKE) bonus -C libft
-
 $(BUILD_DIR):
 	@echo "\n"
 	@mkdir -p $(BUILD_DIR)
 	@echo "[$(NAME)] Creating build directory"
 
-$(LIB):
+$(LIB): $(BUILD_DIR)
 	@if [ ! -d "$(LIB_DIR)" ]; then \
 		git clone git@github.com:DylanC-Code/Libft.git $(LIB_DIR); \
 	fi
+	@if [ ! -f "$(BUILD_DIR)$(LIB_DIR)" ]; then \
+		mkdir -p $(BUILD_DIR)$(LIB_DIR); \
+		echo "[$(NAME)] Creating libft directory"; \
+	fi
+	@$(MAKE) -C $(LIB_DIR) bonus && mv $(LIB_DIR)$(LIB) $(BUILD_DIR)$(LIB_DIR)
+	@cd $(BUILD_DIR)$(LIB_DIR) && ar x $(LIB)
+
 
 bonus: all
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
@@ -95,7 +101,7 @@ test_bonus:
 	~/francinette/tester.sh -b && ~/francinette/tester.sh -bs
 
 main: all
-	@$(CC) -g $(CFLAGS) $(OBJS) $(BUILD_DIR)$(LIB)
+	@$(CC) -g $(CFLAGS) $(OBJS) $(BUILD_DIR)$(LIB_DIR)/*.o
 
 .PHONY: all clean fclean re
 

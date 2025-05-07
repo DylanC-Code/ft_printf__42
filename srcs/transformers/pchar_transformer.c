@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:16:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:58:52 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:56:03 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ t_status	transform_pchar(t_format *format, char *str)
 		return (ERROR);
 	if (apply_width_str(format) == ERROR)
 		return (ERROR);
+	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }
 
@@ -38,9 +39,7 @@ static t_status	apply_precision_str(t_format *format)
 {
 	const size_t	len = ft_strlen(format->text);
 	char			*result;
-	size_t			i;
 
-	i = -1;
 	if (!format->precision || (unsigned int)format->precision >= len)
 		return (NOOP);
 	result = malloc(format->precision + 1);
@@ -65,9 +64,10 @@ static t_status	apply_width_str(t_format *format)
 	result = malloc(format->width + 1);
 	if (!result)
 		return (ERROR);
-	ft_strset(result, ' ', pad_len);
+	ft_strset(result, ' ', format->width);
 	ft_strlcpy(result + pad_len, format->text, len + 1);
 	free(format->text);
 	format->text = result;
+	format->text_len = ft_strlen(result);
 	return (SUCCESS);
 }

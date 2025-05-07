@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:17:55 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 16:50:48 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:52:28 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ t_status	transform_c(t_format *format, char c)
 		return (ERROR);
 	format->text[0] = c;
 	format->text[1] = '\0';
+	format->text_len = 1;
 	return (apply_width(format));
 }
 
@@ -53,5 +54,6 @@ t_status	transform_di(t_format *format, int nbr)
 		return (ERROR);
 	if (apply_width(format) == ERROR)
 		return (ERROR);
+	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }

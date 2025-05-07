@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 03:58:55 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 04:00:24 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:49:01 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ typedef struct s_format
 	unsigned int	width;
 	unsigned char	type;
 	char			*text;
+	unsigned int	text_len;
 }					t_format;
 
 typedef union u_element_data

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 03:23:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 03:34:09 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 15:35:03 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	free_list_el(t_list *head)
 	{
 		next = head->next;
 		free_el(head->content);
-		free(head);
 		head = next;
 	}
 }

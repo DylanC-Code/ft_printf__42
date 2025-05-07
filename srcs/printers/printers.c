@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 03:36:08 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:48:16 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	print_text_el(t_element *el)
 		return (0);
 	text_raw = el->data.text_raw;
 	written_bytes = print_n(text_raw.text, text_raw.len);
-	return (free(el), written_bytes);
+	return (written_bytes);
 }
 
 int	print_format_el(t_element *el)
@@ -67,6 +67,6 @@ int	print_format_el(t_element *el)
 	if (!el)
 		return (0);
 	format = el->data.format;
-	written_bytes = print_n(format.text, -1);
-	return (free(el), written_bytes);
+	written_bytes = print_n(format.text, format.text_len);
+	return (written_bytes);
 }
