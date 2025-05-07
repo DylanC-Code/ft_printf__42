@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 13:55:32 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:01:20 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/07 22:46:31 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,7 @@ t_status	apply_format(t_element *element, va_list args)
 		return (transform_pvoid(format, va_arg(args, void *)));
 	else if (ft_strchr(UNSIGNED_INT_TYPES, format->type))
 		return (transform_unsigned_int(format, va_arg(args, unsigned int)));
+	else if (format->type == '%')
+		return (transform_percent(format));
 	return (ERROR);
 }

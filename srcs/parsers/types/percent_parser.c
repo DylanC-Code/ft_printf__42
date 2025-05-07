@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsigned_int_parsers.c                             :+:      :+:    :+:   */
+/*   percent_parser.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:05:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:28:24 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/07 22:42:58 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/07 22:45:25 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,14 @@
 
 /* =============== Declaration =============== */
 
-t_status	parse_unsigned_int_type(t_format *format);
-t_status	parse_type_u(t_format *format);
-t_status	parse_type_xX(t_format *format);
+t_status	parse_percent(t_format *format);
 
 /* =============== Definition =============== */
 
-t_status	parse_unsigned_int_type(t_format *format)
+t_status	parse_percent(t_format *format)
 {
-	if (format->type == 'u')
-		return (parse_type_u(format));
-	if (format->type == 'x' || format->type == 'X')
-		return (parse_type_xX(format));
-	return (ERROR);
-}
-
-t_status	parse_type_u(t_format *format)
-{
-	if (format->plus || format->space || format->hash)
-		return (ERROR);
-	return (SUCCESS);
-}
-
-t_status	parse_type_xX(t_format *format)
-{
-	if (format->plus || format->space)
+	if (format->hash || format->minus || format->plus || format->precision >= 0
+		|| format->space || format->width || format->zero)
 		return (ERROR);
 	return (SUCCESS);
 }

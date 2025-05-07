@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unsigned_int_parsers.c                             :+:      :+:    :+:   */
+/*   percent_transformer.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/07 20:05:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:28:24 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/07 22:46:44 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/07 22:49:04 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,14 @@
 
 /* =============== Declaration =============== */
 
-t_status	parse_unsigned_int_type(t_format *format);
-t_status	parse_type_u(t_format *format);
-t_status	parse_type_xX(t_format *format);
+t_status	transform_percent(t_format *format);
 
 /* =============== Definition =============== */
-
-t_status	parse_unsigned_int_type(t_format *format)
+t_status	transform_percent(t_format *format)
 {
-	if (format->type == 'u')
-		return (parse_type_u(format));
-	if (format->type == 'x' || format->type == 'X')
-		return (parse_type_xX(format));
-	return (ERROR);
-}
-
-t_status	parse_type_u(t_format *format)
-{
-	if (format->plus || format->space || format->hash)
+	format->text = ft_strdup("%");
+	if (!format->text)
 		return (ERROR);
-	return (SUCCESS);
-}
-
-t_status	parse_type_xX(t_format *format)
-{
-	if (format->plus || format->space)
-		return (ERROR);
+	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }
