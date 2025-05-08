@@ -5,6 +5,8 @@
         "validators.h": "c",
         "parsers.h": "c",
         "transformers.h": "c",
-        "libft.h": "c"
+        "libft.h": "c",
+        "ostream": "cpp",
+        "iostream": "cpp"
     }
 }

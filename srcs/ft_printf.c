@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 19:47:59 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:17:56 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	ft_printf(const char *str, ...)
 // 	if (!argc || !argv)
 // 		return (1);
 // 	// 	// ft_printf("%p", &argc);
-// 	actu = ft_printf("| %04d |", 9);
+// 	actu = ft_printf(" %.2d ", -1);
 // 	__builtin_printf("\n");
-// 	expe = __builtin_printf("| %04d |", 9);
+// 	expe = __builtin_printf(" %.2d ", -1);
 // 	// expe = __builtin_printf("| %50s |", "");
 // 	//
 // 	// __builtin_printf("%#p", &argc);

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:40:46 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/05 15:52:45 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:09:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,8 @@
 /* =============== Declaration =============== */
 
 t_status		apply_precision(t_format *format);
-static t_status	apply_precision_edge_case(char **p_str);
-static t_status	apply_precision_normal_case(char **p_nbr, const size_t nbr_len,
-					unsigned int precision);
+static t_status	apply_precision_edge_case(t_format *format);
+static t_status	apply_precision_normal_case(t_format *format);
 
 /* =============== Definition =============== */
 
@@ -31,25 +30,20 @@ t_status	apply_precision(t_format *format)
 		return (NOOP);
 	if (format->precision == 0 && nbr_len == 1 && ft_strncmp(format->text, "0",
 			1) == 0)
-		return (apply_precision_edge_case(&format->text));
+		return (apply_precision_edge_case(format));
 	if ((long unsigned)format->precision <= nbr_len)
 		return (SUCCESS);
-	return (apply_precision_normal_case(&format->text, nbr_len,
-			format->precision));
+	return (apply_precision_normal_case(format));
 }
 
-static t_status	apply_precision_edge_case(char **p_nbr)
+static t_status	apply_precision_edge_case(t_format *format)
 {
-	free(*p_nbr);
-	*p_nbr = malloc(1);
-	if (!*p_nbr)
-		return (ERROR);
-	**p_nbr = '\0';
+	format->text[0] = '\0';
+	format->text_len = format->precision;
 	return (SUCCESS);
 }
 
-static t_status	apply_precision_normal_case(char **p_nbr, const size_t nbr_len,
-		unsigned int precision)
+static t_status	apply_precision_normal_case(t_format *format)
 {
 	char	*result;
 	size_t	i;
@@ -57,18 +51,19 @@ static t_status	apply_precision_normal_case(char **p_nbr, const size_t nbr_len,
 
 	i = -1;
 	j = -1;
-	result = malloc(precision + 1);
+	result = malloc(format->precision + 1);
 	if (!result)
 		return (ERROR);
-	while (++i < precision)
+	while (++i < format->precision)
 	{
-		if (i < precision - nbr_len)
+		if (i < format->precision - format->text_len)
 			result[i] = '0';
 		else
-			result[i] = (*p_nbr)[++j];
+			result[i] = (format->text)[++j];
 	}
-	result[precision] = '\0';
-	free(*p_nbr);
-	*p_nbr = result;
+	result[format->precision] = '\0';
+	free(format->text);
+	format->text = result;
+	format->text_len = format->precision;
 	return (SUCCESS);
 }
