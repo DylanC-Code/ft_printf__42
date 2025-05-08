@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 11:54:36 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 21:16:46 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 21:54:28 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,21 +37,3 @@ int	ft_printf(const char *str, ...)
 		return (free_list_el(list), ERROR);
 	return (print_contents(list));
 }
-
-// int	main(int argc, char const *argv[])
-// {
-// 	size_t	actu;
-// 	size_t	expe;
-
-// 	if (!argc || !argv)
-// 		return (1);
-// 	// 	// ft_printf("%p", &argc);
-// 	actu = ft_printf("| %.2d |", -1);
-// 	__builtin_printf("\n");
-// 	expe = __builtin_printf("| %.2d |", -1);
-// 	// expe = __builtin_printf("| %50s |", "");
-// 	//
-// 	// __builtin_printf("%#p", &argc);
-// 	__builtin_printf("\nE: %ld,\nA: %ld\n", expe, actu);
-// 	return (0);
-// }

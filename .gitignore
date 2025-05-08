@@ -1,5 +1,4 @@
 build
 libftprintf.a
-libft
 *.out
 printfTester

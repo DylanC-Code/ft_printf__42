@@ -72,9 +72,6 @@ $(BUILD_DIR):
 	@echo "[$(NAME)] Creating build directory"
 
 $(LIB): $(BUILD_DIR)
-	@if [ ! -d "$(LIB_DIR)" ]; then \
-		git clone git@github.com:DylanC-Code/Libft.git $(LIB_DIR); \
-	fi
 	@if [ ! -f "$(BUILD_DIR)$(LIB_DIR)" ]; then \
 		mkdir -p $(BUILD_DIR)$(LIB_DIR); \
 		echo "[$(NAME)] Creating libft directory"; \
@@ -102,10 +99,16 @@ re: fclean all
 rebonus: fclean bonus
 
 test:
-	~/francinette/tester.sh -m && ~/francinette/tester.sh -ms
+	@if [ ! -d "printfTester" ]; then \
+		git clone git@github.com:Tripouille/printfTester.git; \
+	fi;
+	@$(MAKE) -C printfTester
 
 test_bonus:
-	~/francinette/tester.sh -b && ~/francinette/tester.sh -bs
+	@if [ ! -d "printfTester" ]; then \
+		git clone git@github.com:Tripouille/printfTester.git; \
+	fi;
+	@$(MAKE) b -C printfTester
 
 main: all
 	@$(CC) -g $(CFLAGS) $(OBJS) $(BUILD_DIR)$(LIB_DIR)/*.o
