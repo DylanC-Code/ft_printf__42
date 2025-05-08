@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 16:03:03 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 19:30:12 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 21:28:55 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_status	transform_pvoid(t_format *format, void *ptr)
 
 	if (!ptr)
 		return (transform_null_ptr(format));
-	format->text = NULL;
 	addr = (uintptr_t)ptr;
 	hex = ultoa_base(addr, "0123456789abcdef");
 	if (!hex)
