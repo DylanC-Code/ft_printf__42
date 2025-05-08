@@ -47,8 +47,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	parsers/types/pvoid_parsers.c \
 	parsers/types/types_parsers.c \
 	parsers/types/unsigned_int_parsers.c \
-	printers/printers.c \
-	printers/utils_printers.c \
+	printers.c \
 )
 
 OBJS := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))

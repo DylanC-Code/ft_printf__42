@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 16:37:22 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:17:11 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 22:00:47 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include "libft.h"
 # include "types.h"
 # include "parsers.h"
-# include "printers.h"
 # include "transformers.h"
 # include <stdint.h>
 # include <stdio.h>
@@ -50,5 +49,6 @@ t_element	*create_format(void);
 /* Printers */
 
 int			print_contents(t_list *head);
+int			print_n(char *text, size_t n);
 
 #endif

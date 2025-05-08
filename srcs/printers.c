@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 17:48:16 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 21:58:34 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 int	print_text_el(t_element *el);
 int	print_format_el(t_element *el);
 int	print_contents(t_list *head);
+int	print_n(char *text, size_t n);
 
 /* =============== Definition =============== */
 
@@ -69,4 +70,18 @@ int	print_format_el(t_element *el)
 	format = el->data.format;
 	written_bytes = print_n(format.text, format.text_len);
 	return (written_bytes);
+}
+
+
+int	print_n(char *text, size_t n)
+{
+	ssize_t	bytes_written;
+
+	bytes_written = 0;
+	if (!text)
+		return (bytes_written);
+	bytes_written = write(STDOUT_FILENO, text, n);
+	if (bytes_written >= 0)
+		return (bytes_written);
+	return (0);
 }
