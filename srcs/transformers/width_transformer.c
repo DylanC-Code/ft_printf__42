@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:39:16 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 21:44:44 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 18:53:59 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,36 +61,36 @@ static t_status	fill_width_with_zero(t_format *format)
 
 static t_status	fill_width_with_space(t_format *format)
 {
-	const size_t	len = ft_strlen(format->text);
-	const size_t	pad_len = format->width - len;
+	const size_t	pad_len = format->width - format->text_len;
 	char			*result;
 
-	if (format->width <= len)
+	if (format->width <= format->text_len)
 		return (NOOP);
 	result = malloc(format->width + 1);
 	if (!result)
 		return (ERROR);
 	ft_strset(result, ' ', pad_len);
-	ft_strlcpy(result + pad_len, format->text, len + 1);
+	ft_strlcpy(result + pad_len, format->text, format->text_len + 1);
 	free(format->text);
 	format->text = result;
+	format->text_len = format->width;
 	return (SUCCESS);
 }
 
 static t_status	fill_width_with_space_by_end(t_format *format)
 {
-	const size_t	len = ft_strlen(format->text);
-	const size_t	pad_len = format->width - len;
+	const size_t	pad_len = format->width - format->text_len;
 	char			*result;
 
-	if (format->width <= len)
+	if (format->width <= format->text_len)
 		return (NOOP);
 	result = malloc(format->width + 1);
 	if (!result)
 		return (ERROR);
-	ft_strlcpy(result, format->text, len + 1);
-	ft_strset(result + len, ' ', pad_len);
+	ft_strlcpy(result, format->text, format->text_len + 1);
+	ft_strset(result + format->text_len, ' ', pad_len);
 	free(format->text);
 	format->text = result;
+	format->text_len = format->width;
 	return (SUCCESS);
 }

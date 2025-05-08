@@ -21,6 +21,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	entities/text_raw.c \
 	entities/format.c \
 	transformers/transformers.c \
+	transformers/c_transformers.c \
 	transformers/int_transformers.c \
 	transformers/unsigned_int_transformers.c \
 	transformers/percent_transformer.c \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   int_transformers.c                                 :+:      :+:    :+:   */
+/*   c_transformers.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/05 15:17:55 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 23:12:27 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/07 23:12:13 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/08 18:58:13 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,34 +16,21 @@
 
 /* =============== Declaration =============== */
 
-t_status	transform_int(t_format *format, int n);
-t_status	transform_di(t_format *format, int nbr);
+t_status	transform_c(t_format *format, char c);
+t_status	transform_null_char(t_format *format);
+t_status	transform_char(t_format *format, char c);
 
 /* =============== Definition =============== */
 
-t_status	transform_int(t_format *format, int n)
+t_status	transform_c(t_format *format, char c)
 {
-	if (format->type == 'c')
-		return (transform_c(format, n));
-	else if (format->type == 'd' || format->type == 'i')
-		return (transform_di(format, n));
-	return (ERROR);
-}
-
-
-
-t_status	transform_di(t_format *format, int nbr)
-{
-	const bool	is_positive = nbr >= 0;
-
-	(void)is_positive;
-	format->text = ft_itoa(ft_abs(nbr));
-	if (apply_precision(format) == ERROR)
+	format->text = malloc(2);
+	if (!format->text)
 		return (ERROR);
-	if (apply_sign(format, is_positive) == ERROR)
-		return (ERROR);
+	format->text[0] = c;
+	format->text[1] = '\0';
+	format->text_len = 1;
 	if (apply_width(format) == ERROR)
 		return (ERROR);
-	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }
