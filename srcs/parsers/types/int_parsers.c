@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 16:19:27 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 21:49:31 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:28:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_status	parse_int_type(t_format *format)
 
 t_status	parse_type_di(t_format *format)
 {
-	if (format->hash)
+	if (format->sharp)
 		return (ERROR);
 	return (SUCCESS);
 }
@@ -46,7 +46,7 @@ t_status	parse_type_c(t_format *format)
 		return (ERROR);
 	else if (format->space)
 		return (ERROR);
-	else if (format->hash)
+	else if (format->sharp)
 		return (ERROR);
 	else if (format->precision >= 0)
 		return (ERROR);

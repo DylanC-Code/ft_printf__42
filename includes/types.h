@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 03:58:55 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 17:49:01 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:28:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct s_format
 	bool			minus;
 	bool			zero;
 	long			precision;
-	bool			hash;
+	bool			sharp;
 	bool			space;
 	bool			plus;
 	unsigned int	width;

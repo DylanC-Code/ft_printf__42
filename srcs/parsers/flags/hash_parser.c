@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 03:42:04 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/06 03:42:34 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:28:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_status	parse_hash(t_format *format, char **p_str)
 		return (ERROR);
 	if (**p_str != '#')
 		return (NOOP);
-	if (format->hash == true)
+	if (format->sharp == true)
 		return (ERROR);
-	format->hash = true;
+	format->sharp = true;
 	format->len++;
 	*p_str = *p_str + 1;
 	return (SUCCESS);

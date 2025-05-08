@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:05:12 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:28:24 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:28:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_status	parse_unsigned_int_type(t_format *format)
 
 t_status	parse_type_u(t_format *format)
 {
-	if (format->plus || format->space || format->hash)
+	if (format->plus || format->space || format->sharp)
 		return (ERROR);
 	return (SUCCESS);
 }

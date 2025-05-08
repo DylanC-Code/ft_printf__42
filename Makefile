@@ -29,6 +29,7 @@ SRCS  = $(addprefix $(SRC_DIR), \
 	transformers/pchar_transformer.c \
 	transformers/pvoid_transformer.c \
 	transformers/width_transformer.c \
+	transformers/sharp_transformer.c \
 	transformers/sign_transformer.c \
 	transformers/precision_transformer.c \
 	parsers/parsers.c \

@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:42:11 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 23:15:43 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:38:27 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ t_status	apply_formats(t_list *head, va_list args);
 t_status	apply_precision(t_format *format);
 t_status	apply_sign(t_format *format, bool is_positive);
 t_status	apply_width(t_format *format);
+t_status	apply_sharp(t_format *format, bool upper);
+
 
 /* Types */
 t_status	transform_int(t_format *format, int n);

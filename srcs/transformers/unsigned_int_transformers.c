@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:08:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 20:19:24 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:38:44 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_status	transform_x(t_format *format, unsigned int nbr)
 	format->text_len = ft_strlen(format->text);
 	if (apply_precision(format) == ERROR)
 		return (ERROR);
+	if (apply_sharp(format, false) == ERROR)
+		return (ERROR);
 	if (apply_width(format) == ERROR)
 		return (ERROR);
 	return (SUCCESS);
@@ -66,6 +68,8 @@ t_status	transform_X(t_format *format, unsigned int nbr)
 		return (ERROR);
 	format->text_len = ft_strlen(format->text);
 	if (apply_precision(format) == ERROR)
+		return (ERROR);
+	if (apply_sharp(format, true) == ERROR)
 		return (ERROR);
 	if (apply_width(format) == ERROR)
 		return (ERROR);

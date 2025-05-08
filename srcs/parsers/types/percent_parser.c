@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 22:42:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:45:25 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 20:28:32 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_status	parse_percent(t_format *format);
 
 t_status	parse_percent(t_format *format)
 {
-	if (format->hash || format->minus || format->plus || format->precision >= 0
+	if (format->sharp || format->minus || format->plus || format->precision >= 0
 		|| format->space || format->width || format->zero)
 		return (ERROR);
 	return (SUCCESS);
