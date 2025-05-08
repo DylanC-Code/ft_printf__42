@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 15:17:55 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 23:12:27 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/08 19:31:45 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ t_status	transform_int(t_format *format, int n)
 	return (ERROR);
 }
 
-
-
 t_status	transform_di(t_format *format, int nbr)
 {
 	const bool	is_positive = nbr >= 0;
@@ -42,8 +40,8 @@ t_status	transform_di(t_format *format, int nbr)
 		return (ERROR);
 	if (apply_sign(format, is_positive) == ERROR)
 		return (ERROR);
+	format->text_len = ft_strlen(format->text);
 	if (apply_width(format) == ERROR)
 		return (ERROR);
-	format->text_len = ft_strlen(format->text);
 	return (SUCCESS);
 }
