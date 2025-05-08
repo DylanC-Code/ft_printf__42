@@ -1,5 +1,6 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I libft -g
+# CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I libft -g
+CFLAGS =  -I includes -I libft -g
 # -lft -Lbuild
 AR = ar
 ARFLAGS = rcs
