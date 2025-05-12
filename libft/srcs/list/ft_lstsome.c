@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstsome.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/23 17:09:07 by dcastor           #+#    #+#             */
-/*   Updated: 2025/04/25 13:51:03 by dcastor          ###   ########.fr       */
+/*   Created: 2025/05/10 13:41:36 by dcastor           #+#    #+#             */
+/*   Updated: 2025/05/10 13:49:49 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+bool	ft_lstsome(t_list *head, bool (*f)(t_list*))
 {
-	size_t	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
+	while (head)
+	{
+		if (f(head))
+			return (true);
+		head = head->next;
+	}
+	return (false);
 }

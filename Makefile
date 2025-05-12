@@ -75,7 +75,7 @@ $(LIB): $(BUILD_DIR)
 		mkdir -p $(BUILD_DIR)$(LIB_DIR); \
 		echo "[$(NAME)] Creating libft directory"; \
 	fi
-	@$(MAKE) -C $(LIB_DIR) bonus && mv $(LIB_DIR)$(LIB) $(BUILD_DIR)$(LIB_DIR)
+	@$(MAKE) -C $(LIB_DIR) && mv $(LIB_DIR)$(LIB) $(BUILD_DIR)$(LIB_DIR)
 	@cd $(BUILD_DIR)$(LIB_DIR) && ar x $(LIB)
 
 

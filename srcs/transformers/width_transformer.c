@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/05 09:39:16 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 20:47:33 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/12 12:33:01 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ static t_status	fill_width_with_space_by_end(t_format *format)
 
 	if (format->width <= format->text_len)
 		return (NOOP);
-	result = malloc(format->width + 1);
+	result = ft_calloc(format->width + 1, sizeof(char));
 	if (!result)
 		return (ERROR);
 	ft_strlcpy(result, format->text, format->text_len + 1);
