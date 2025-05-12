@@ -84,12 +84,12 @@ bonus: all
 	@echo "[$(NAME)] Bonus successfully added to the archive 🎆"
 
 clean:
-	@$(RM) $(OBJS) $(DEPS)
+	@$(RM) $(BUILD_DIR)
 	@$(MAKE) clean -C libft
 	@echo "[$(NAME)] Cleaning object files 🧼"
 
 fclean: clean
-	@$(RM) $(BUILD_DIR)
+	@$(RM) $(BUILD_DIR) $(NAME)
 	@echo "[$(NAME)] Cleaning archive 🧼"
 
 re: fclean all
