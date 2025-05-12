@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/07 20:08:58 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 20:38:44 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:51:20 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 t_status	transform_unsigned_int(t_format *format, unsigned int nbr);
 t_status	transform_u(t_format *format, unsigned int nbr);
 t_status	transform_x(t_format *format, unsigned int nbr);
-t_status	transform_X(t_format *format, unsigned int nbr);
+t_status	transform_upper_x(t_format *format, unsigned int nbr);
 
 /* =============== Definition =============== */
 
@@ -30,7 +30,7 @@ t_status	transform_unsigned_int(t_format *format, unsigned int nbr)
 	else if (format->type == 'x')
 		return (transform_x(format, nbr));
 	else if (format->type == 'X')
-		return (transform_X(format, nbr));
+		return (transform_upper_x(format, nbr));
 	return (ERROR);
 }
 
@@ -61,7 +61,8 @@ t_status	transform_x(t_format *format, unsigned int nbr)
 		return (ERROR);
 	return (SUCCESS);
 }
-t_status	transform_X(t_format *format, unsigned int nbr)
+
+t_status	transform_upper_x(t_format *format, unsigned int nbr)
 {
 	format->text = ft_uitoa_base(nbr, "0123456789ABCDEF");
 	if (!format->text)

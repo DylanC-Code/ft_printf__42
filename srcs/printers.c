@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/03 15:02:00 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 21:58:34 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:45:34 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	print_format_el(t_element *el)
 	written_bytes = print_n(format.text, format.text_len);
 	return (written_bytes);
 }
-
 
 int	print_n(char *text, size_t n)
 {

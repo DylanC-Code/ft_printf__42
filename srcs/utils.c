@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/06 03:23:35 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/07 22:07:14 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/12 11:45:49 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,3 @@ void	free_el(t_element *el)
 		(free(el->data.format.text));
 	return (free(el));
 }
-
