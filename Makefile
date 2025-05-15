@@ -1,7 +1,5 @@
 CC = cc
-# CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I libft -g
-CFLAGS =  -I includes -I libft -g
-# -lft -Lbuild
+CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I Libft -g -L Libft -lft
 AR = ar
 ARFLAGS = rcs
 
@@ -11,7 +9,7 @@ RM = rm -rf
 
 NAME = libftprintf.a
 LIB = libft.a
-LIB_DIR = libft/
+LIB_DIR = Libft/
 
 BUILD_DIR = build/
 
@@ -56,7 +54,7 @@ DEPS = $(OBJS:.o=.d)
 all: $(NAME)
 
 $(NAME): $(BUILD_DIR) $(LIB) $(OBJS)
-	@$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(BUILD_DIR)$(LIB_DIR)*.o
+	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	@echo
 	@echo "[$(NAME)] Archive generated ✅"
 
@@ -70,14 +68,8 @@ $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 	@echo "[$(NAME)] Creating build directory"
 
-$(LIB): $(BUILD_DIR)
-	@if [ ! -f "$(BUILD_DIR)$(LIB_DIR)" ]; then \
-		mkdir -p $(BUILD_DIR)$(LIB_DIR); \
-		echo "[$(NAME)] Creating libft directory"; \
-	fi
-	@$(MAKE) -C $(LIB_DIR) && mv $(LIB_DIR)$(LIB) $(BUILD_DIR)$(LIB_DIR)
-	@cd $(BUILD_DIR)$(LIB_DIR) && ar x $(LIB)
-
+$(LIB):
+	@$(MAKE) -C $(LIB_DIR)
 
 bonus: all
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
@@ -85,7 +77,7 @@ bonus: all
 
 clean:
 	@$(RM) $(BUILD_DIR)
-	@$(MAKE) clean -C libft
+	@$(MAKE) clean -C $(LIB_DIR)
 	@echo "[$(NAME)] Cleaning object files 🧼"
 
 fclean: clean
@@ -110,7 +102,7 @@ test_bonus:
 	@$(MAKE) b -C printfTester
 
 main: all
-	@$(CC) -g $(CFLAGS) $(OBJS) $(BUILD_DIR)$(LIB_DIR)/*.o
+	$(CC) $(NAME) $(CFLAGS) -o main
 
 .PHONY: all clean fclean re
 

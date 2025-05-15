@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 20:23:29 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 20:38:18 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/15 21:57:11 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_status	apply_sharp(t_format *format, bool upper)
 {
 	char	*result;
 
-	if (!format->sharp || format->text_len == 1 && format->text[0] == '0')
+	if (!format->sharp || (format->text_len == 1 && format->text[0] == '0'))
 		return (NOOP);
 	if (upper)
 		result = ft_strjoin("0X", format->text);

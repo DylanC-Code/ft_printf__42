@@ -6,7 +6,7 @@
 /*   By: dcastor <dcastor@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 20:40:46 by dcastor           #+#    #+#             */
-/*   Updated: 2025/05/08 21:15:02 by dcastor          ###   ########.fr       */
+/*   Updated: 2025/05/15 21:58:37 by dcastor          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static t_status	apply_precision_normal_case(t_format *format)
 	result = malloc(format->precision + 1);
 	if (!result)
 		return (ERROR);
-	while (++i < format->precision)
+	while (++i < (unsigned long)format->precision)
 	{
-		if (i < format->precision - format->text_len)
+		if (i < (unsigned long)format->precision - format->text_len)
 			result[i] = '0';
 		else
 			result[i] = (format->text)[++j];
