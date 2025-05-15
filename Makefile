@@ -53,7 +53,8 @@ DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
 
-$(NAME): $(BUILD_DIR) $(LIB) $(OBJS)
+# $(NAME): $(BUILD_DIR) $(LIB) $(OBJS)
+$(NAME): $(BUILD_DIR) $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	@echo
 	@echo "[$(NAME)] Archive generated ✅"
@@ -68,8 +69,8 @@ $(BUILD_DIR):
 	@mkdir -p $(BUILD_DIR)
 	@echo "[$(NAME)] Creating build directory"
 
-$(LIB):
-	@$(MAKE) -C $(LIB_DIR)
+# $(LIB):
+# 	@$(MAKE) -C $(LIB_DIR)
 
 bonus: all
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
