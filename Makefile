@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I Libft -g -L Libft -lft
+CFLAGS = -Wall -Wextra -Werror -MMD -I includes -I ../libft/includes -L ../libft -lft -g
 AR = ar
 ARFLAGS = rcs
 
@@ -8,9 +8,10 @@ MAKE = make
 RM = rm -rf
 
 NAME = libftprintf.a
-LIB = libft.a
-LIB_DIR = Libft/
+LIB_DIR = ../libft/
+LIB = $(LIB_DIR)libft.a
 
+CFLAGS += -I $(LIB_DIR)includes
 BUILD_DIR = build/
 
 SRC_DIR = srcs/
@@ -53,7 +54,6 @@ DEPS = $(OBJS:.o=.d)
 
 all: $(NAME)
 
-# $(NAME): $(BUILD_DIR) $(LIB) $(OBJS)
 $(NAME): $(BUILD_DIR) $(OBJS)
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 	@echo
@@ -68,9 +68,6 @@ $(BUILD_DIR):
 	@echo "\n"
 	@mkdir -p $(BUILD_DIR)
 	@echo "[$(NAME)] Creating build directory"
-
-# $(LIB):
-# 	@$(MAKE) -C $(LIB_DIR)
 
 bonus: all
 	@$(AR) $(ARFLAGS) $(NAME) $(OBJS)
