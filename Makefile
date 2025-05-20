@@ -1,5 +1,5 @@
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -MMD -I includes -g -I ../Libft/includes
+CFLAGS = -Wall -Wextra -Werror -MMD -I includes -g -I ../libft/includes
 AR = ar
 ARFLAGS = rcs
 
@@ -8,7 +8,7 @@ MAKE = make
 RM = rm -rf
 
 NAME = libftprintf.a
-LIB_DIR = ../Libft/
+LIB_DIR = ../libft/
 LIB = $(LIB_DIR)libft.a
 
 CFLAGS += -I $(LIB_DIR)includes
